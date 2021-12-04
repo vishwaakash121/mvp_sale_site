@@ -1,30 +1,66 @@
 <div class="container">
-<div class="row justify-content-center">
-<div class="col-10">
-<%= render 'shared/errors', obj: @deal %> 
-            <%= form_with(model: @deal, class: "shadow p-3 mb-3 custom-bg rounded", local: true) do |f|%>
-                <div class="form-group row mt-2">
-                    <%= f.label :title, class: "col-2 col-form-label" %>
-                    <div class="col-10">
-                        <%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of deal" %>
-                    </div>
-                </div>
+	<div class="row justify-content-center">
+		<div class="col-10">
+			<%= render 'shared/errors', obj: @deal %> 
+			<%= form_with(model: @deal, class: "shadow p-3 mb-3 custom-bg rounded", local: true) do |f|%>
+					<div class="form-group row mt-2">
+						<%= f.label :title, class: "col-2 col-form-label" %>
+						<div class="col-10">
+								<%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of deal" %>
+						</div>
+					</div>
 
-                <div class="form-group row mt-2">
-                    <%= f.label :description, class: "col-2 col-form-label" %>
-                    <div class="col-10">
-                        <%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of deal" %>
-                    </div>
-                </div>
+					<div class="form-group row mt-2">
+						<%= f.label :description, class: "col-2 col-form-label" %>
+						<div class="col-10">
+							<%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of deal" %>
+						</div>
+					</div>
+					<div class="form-group row mt-2">
+						<%= f.label :price, class: "col-2 col-form-label" %>
+						<div class="col-10">
+							<%= f.number_field :price, class: "form-control shadow rounded", placeholder: "Price of product" %>
+						</div>
+					</div>
+					<div class="form-group row mt-2">
+						<%= f.label :discount, class: "col-2 col-form-label" %>
+						<div class="col-10">
+							<%= f.number_field :discount, class: "form-control shadow rounded", placeholder: "Enter discount" %>
+						</div>
+					</div>
 
-                <div class="text-center mt-3">
-                    <%= f.submit class: "btn btn-outline-light btn-lg" %>
-                </div>
-            <% end %>
-        </div>
-        
-        <div class="text-center mt-3 mb-3">
-          <%= link_to "[ Cancel and return to deals listing ]", deals_path, class: "text-info cancel-btn" %>
-        </div>
-    </div>
+
+					<div class="form-group row mt-2">
+						<%= f.label :quantity, class: "col-2 col-form-label" %>
+						<div class="col-10">
+							<%= f.number_field :quantity, class: "form-control shadow rounded", placeholder: "Quantity of deal" %>
+						</div>
+					</div>
+
+
+					<div class="form-group row mt-2">
+						<%= f.label :publish_date, class: "col-2 col-form-label" %>
+						<div class="col-10">
+							<%= f.date_field :publish_date, class: "form-control shadow rounded", placeholder: "Publish date of deal" %>
+						</div>
+					</div>
+
+
+					<div class="form-group row mt-2">
+						<%= f.label :image, class: "col-2 col-form-label" %>
+						<div class="col-10">
+							<%= f.file_field :image, class: "form-control shadow rounded", placeholder: "Image of product" %>
+						</div>
+					</div>
+
+					<div class="text-center mt-3">
+							<%= f.submit class: "btn btn-outline-light btn-lg" %>
+					</div>
+			<% end %>
+		</div>
+				
+		<div class="text-center mt-3 mb-3">
+			<%= link_to "[ Cancel and return to deals listing ]", deals_path, class: "text-info cancel-btn" %>
+		</div>
+  </div>
 </div>

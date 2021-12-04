@@ -16,7 +16,6 @@ class DealsController < ApplicationController
     end
 
     def new
-        byebug
         @deal = Deal.new
     end
 
@@ -52,7 +51,7 @@ class DealsController < ApplicationController
     end
 
     def deal_params
-        params.require(:deal).permit(:title, :description, category_ids: [])
+        params.require(:deal).permit(Deal.columns.map(&:name))
     end
 
     def require_same_user

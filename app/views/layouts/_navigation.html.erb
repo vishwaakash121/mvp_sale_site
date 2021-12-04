@@ -6,17 +6,19 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            Deals
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <% if logged_in? %>
-              <%= link_to "Create new deal", new_deal_path, class: "dropdown-item" %>
-            <% end %>
-            <%= link_to "View deals", deals_path, class: "dropdown-item" %>
-          </ul>
-        </li>
+        <% if logged_in? %>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Deals
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <% if current_user.admin? %>
+                <%= link_to "Create new deal", new_deal_path, class: "dropdown-item" %>
+              <% end %>
+              <%= link_to "View deals", deals_path, class: "dropdown-item" %>
+            </ul>
+          </li>
+        <% end %>
 
         <% if logged_in? %>
           <li class="nav-item dropdown">

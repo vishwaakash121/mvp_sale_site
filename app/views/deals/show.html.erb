@@ -1,26 +1,20 @@
 <h2 class="text-center mt-4"><%= @deal.title %></h1>
 
-    <div class="row justify-content-center">
-        <div class="col-8 mt-4">
-            <div class="card text-center shadow mb-5 bg-white rounded">
-                <div class="card-header fst-italic">
-                by <%= @deal.user.username if @deal.user %>
-                <%= link_to gravatar_for(@deal.user), user_path(@deal.user) %>
-                </div>
-                <div class="card-body">
-                    <div class="card-text text-start">
-                        <%= simple_format(@deal.description) %>
-                    </div>
-                    <% if logged_in? && (@deal.user == current_user || current_user.admin?) %>
-                        <%= link_to "Edit" , edit_deal_path(@deal), class: "btn btn-outline-info" %>
-                        <%= link_to "Delete" , deal_path(@deal), method: :delete,
-                                    class: "btn btn-outline-danger" , data: {confirm: "Are you sure ?" }%>
-                    <% end %>
-                </div>
-                <div class="card-footer text-muted">
-                    Created <%= time_ago_in_words(@deal.created_at) %> ago,
-                    Edited <%= time_ago_in_words(@deal.updated_at) %> ago
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="row justify-content-center">
+	<div class="col-8 mt-4">
+		<div class="card text-center shadow mb-5 bg-white rounded">
+			<div class="card-header fst-italic">
+			by <%= @deal.user.username if @deal.user %>
+			<%= link_to gravatar_for(@deal.user), user_path(@deal.user) %>
+			</div>
+			<div class="card-body">
+				<% if logged_in? && (@deal.user == current_user || current_user.admin?) %>
+					<%= link_to "Edit" , edit_deal_path(@deal), class: "btn btn-outline-info" %>
+					<%= link_to "Delete" , deal_path(@deal), method: :delete,
+											class: "btn btn-outline-danger" , data: {confirm: "Are you sure ?" }%>
+				<% end %>
+			</div>
+			<%= render partial: 'details', locals: { deal: @deal } %>
+		</div>
+	</div>
+</div>
