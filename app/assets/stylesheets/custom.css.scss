@@ -26,7 +26,7 @@ a {
 }
 
 .jumbotron {
-  background: asset-url("jumbo-copy.jpg");
+  background: asset-url("ecommerce.jpg");
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -38,6 +38,27 @@ a {
   justify-content: center;
 }
 
+.lead {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: black;
+}
+
+.display-4{
+  color: black;
+}
+
+.sign-up {
+  background-color: darkcyan;
+}
+
+.custom-bg {
+  background-color: darkcyan;
+}
+
+.cancel-btn{
+  color: darkcyan;
+}
 html,
 body {
   height: 100%;
