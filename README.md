@@ -11,6 +11,7 @@ There are total 3 models created in project, each are associated with each other
 1. User
 2. Deal
 3. TransactionHistory
+
 Some of the basic assumption is taken such as deal title length, description and having some custom validation at model also, to avoid inconsistent data in database
 
 
