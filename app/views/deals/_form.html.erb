@@ -6,26 +6,26 @@
 					<div class="form-group row mt-2">
 						<%= f.label :title, class: "col-2 col-form-label" %>
 						<div class="col-10">
-								<%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of deal" %>
+								<%= f.text_field :title, class: "form-control shadow rounded", placeholder: "Title of deal", required: true %>
 						</div>
 					</div>
 
 					<div class="form-group row mt-2">
 						<%= f.label :description, class: "col-2 col-form-label" %>
 						<div class="col-10">
-							<%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of deal" %>
+							<%= f.text_area :description, rows: 10, class: "form-control shadow rounded", placeholder: "Description of deal", required: true %>
 						</div>
 					</div>
 					<div class="form-group row mt-2">
 						<%= f.label :price, class: "col-2 col-form-label" %>
 						<div class="col-10">
-							<%= f.number_field :price, class: "form-control shadow rounded", placeholder: "Price of product" %>
+							<%= f.number_field :price, min: 1, class: "form-control shadow rounded", placeholder: "Price of product", onchange: "this.value = validateUserInputPrice(this)", required: true %>
 						</div>
 					</div>
 					<div class="form-group row mt-2">
 						<%= f.label :discount, class: "col-2 col-form-label" %>
 						<div class="col-10">
-							<%= f.number_field :discount, class: "form-control shadow rounded", placeholder: "Enter discount" %>
+							<%= f.number_field :discount, min: 0, max: 100, class: "form-control shadow rounded", placeholder: "Enter Discount in percentage", onchange: "this.value = validateUserInputAmount(this)", required: true %>
 						</div>
 					</div>
 
@@ -33,7 +33,7 @@
 					<div class="form-group row mt-2">
 						<%= f.label :quantity, class: "col-2 col-form-label" %>
 						<div class="col-10">
-							<%= f.number_field :quantity, class: "form-control shadow rounded", placeholder: "Quantity of deal" %>
+							<%= f.number_field :quantity, min: 0, class: "form-control shadow rounded", placeholder: "Quantity of deal", onchange: "this.value = validateUserInputAmount(this)", required: true %>
 						</div>
 					</div>
 
@@ -41,7 +41,7 @@
 					<div class="form-group row mt-2">
 						<%= f.label :publish_date, class: "col-2 col-form-label" %>
 						<div class="col-10">
-							<%= f.date_field :publish_date, class: "form-control shadow rounded", placeholder: "Publish date of deal" %>
+							<%= f.date_field :publish_date, min: Date.today + 1, class: "form-control shadow rounded", placeholder: "Publish date of deal", required: true %>
 						</div>
 					</div>
 
@@ -49,7 +49,7 @@
 					<div class="form-group row mt-2">
 						<%= f.label :image, class: "col-2 col-form-label" %>
 						<div class="col-10">
-							<%= f.file_field :image, class: "form-control shadow rounded", placeholder: "Image of product" %>
+							<%= f.file_field :image, class: "form-control shadow rounded", placeholder: "Image of product", required: true %>
 						</div>
 					</div>
 
@@ -64,3 +64,12 @@
 		</div>
   </div>
 </div>
+
+<script>
+	function validateUserInputAmount(event) {
+		return (Math.abs(event.value).toFixed(2) > 100 ? 100 : Math.abs(event.value).toFixed(2));
+	}
+	function validateUserInputPrice(event) {
+		return (Math.abs(event.value).toFixed(2) < 0 ? 0 : Math.abs(event.value).toFixed(2));
+	}
+</script>

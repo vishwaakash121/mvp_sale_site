@@ -5,11 +5,11 @@
 	<p class="card-text">
 			<%= truncate(deal.description, length: 100) %>
 	</p>
-	<p class="card-text">Price: <%= deal.price %></p>
-	<p class="card-text">Discount: <%= deal.discount %></p>
+	<p class="card-text">Price: ₹ <%= deal.price %></p>
+	<p class="card-text">Discount: ₹ <%= get_discount_price(deal.price.to_f, deal.discount.to_f) %></p>
 	<p class="card-text">Quantity: <%= deal.quantity %></p>
 	<p class="card-text">Publish date: <%= deal.publish_date %></p>
-	<p class="card-text">Image: <%= deal.image %></p>
+	<p class="card-text"><%= image_tag(deal.image, style: "width: 100px") %></p>
 	<%= link_to "View" , deal_path(deal), class: "btn btn-outline-success" %>
 	<% if logged_in? && (deal.user == current_user || current_user.admin?) %>
 			<%= link_to "Edit" , edit_deal_path(deal), class: "btn btn-outline-info" %>
