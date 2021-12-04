@@ -4,7 +4,7 @@ class Deal < ApplicationRecord
 	validates :title, presence: true, length: {minimum: 6, maximum: 100}
 	validates :description, presence: true, length: {minimum: 10, maximum: 300}
 	validates :price, :quantity, presence: true, numericality: { greater_than_or_equal_to: 0 }
-	validates :image, :publish_date, :discount, presence: true
+	validates :publish_date, :discount, presence: true
 	has_one_attached :image
 
 	validate :validate_deal_attributes

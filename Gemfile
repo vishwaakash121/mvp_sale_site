@@ -21,6 +21,7 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 gem 'sidekiq'
+gem "rspec"
 gem 'will_paginate', '~> 3.3'
 
 # Use Active Storage variant
@@ -45,6 +46,12 @@ group :development do
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
+group :development, :test do
+  # There may be other lines in this block already. Simply append the following after:
+  gem 'rspec-rails'
+  gem 'factory_bot_rails'
+  gem 'shoulda-matchers', '~> 3.1'
 end
 
 group :test do
