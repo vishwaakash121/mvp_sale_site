@@ -1,7 +1,7 @@
 class DealsController < ApplicationController
 
     # after_action, around_action : HW
-	before_action :set_deal, only: [:show, :edit, :update, :destroy]
+	before_action :set_deal, only: [:show, :edit, :update, :destroy, :sell_product]
 	before_action :require_user
 	before_action :require_same_user, only: [:edit, :update, :destroy]
 
@@ -9,7 +9,7 @@ class DealsController < ApplicationController
 	end
 	
 	def index
-		@deals = Deal.paginate(page: params[:page], per_page: 5)
+		@deals = Deal.where(state: 'active')
 	end
 	
 	def edit
@@ -42,6 +42,18 @@ class DealsController < ApplicationController
 	def destroy
 		@deal.destroy
 		redirect_to deals_path
+	end
+
+	def sell_product
+		Deal.transaction do
+			if @deal.is_already_purchased?(current_user)
+				@deal.update!(quantity: @deal.quantity - 1)
+				flash[:notice] = "Successfully purchased the product"
+			else
+				flash[:error] = "Deal can be used single time by a user"
+			end
+		end
+		redirect_back(fallback_location: root_path)
 	end
 
 	private

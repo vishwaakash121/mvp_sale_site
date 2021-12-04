@@ -5,12 +5,13 @@
 	<p class="card-text">
 			<%= truncate(deal.description, length: 100) %>
 	</p>
-	<p class="card-text">Price: ₹ <%= deal.price %></p>
-	<p class="card-text">Discount: ₹ <%= get_discount_price(deal.price.to_f, deal.discount.to_f) %></p>
-	<p class="card-text">Quantity: <%= deal.quantity %></p>
-	<p class="card-text">Publish date: <%= deal.publish_date %></p>
-	<p class="card-text"><%= image_tag(deal.image, style: "width: 100px") %></p>
-	<%= link_to "View" , deal_path(deal), class: "btn btn-outline-success" %>
+	<p class="card-text"><em><b>Price: </b></em>₹ <%= deal.price %></p>
+	<p class="card-text"><em><b>Discount: </b></em>₹ <%= get_discount_price(deal.price.to_f, deal.discount.to_f) %></p>
+	<p class="card-text"><em><b>Quantity: </b></em><%= deal.quantity %></p>
+	<p class="card-text"><em><b>Publish date: </b></em><%= deal.publish_date.strftime("%a, #{deal.publish_date.day.ordinalize} %b %Y") %></p>
+	<p class="card-text"><em><b><%= image_tag(deal.image, style: "width: 100px") %></p>
+	<%= link_to "Buy", sell_product_path(id: deal.id), class: "btn btn-outline-success" if deal.quantity > 0 and !deal.is_already_purchased?(current_user) %>
+	<%= link_to "View", deal_path(deal), class: "btn btn-outline-success" %>
 	<% if logged_in? && (deal.user == current_user || current_user.admin?) %>
 			<%= link_to "Edit" , edit_deal_path(deal), class: "btn btn-outline-info" %>
 			<%= link_to "Delete" , deal_path(deal), method: :delete,

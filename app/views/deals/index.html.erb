@@ -1,8 +1,7 @@
 <h1 class="text-center mt-4">Today's Deal</h1>
 
-
-<div class="flickr_pagination">
-    <%= will_paginate @deals, :container => false %>
-</div>
-
-<%= render 'deal' %>
+<% if @deals.present? %>
+	<%= render 'deal' %>
+<% else %>
+	<p class="center-text">There is no active deal for today!</p>
+<% end %>

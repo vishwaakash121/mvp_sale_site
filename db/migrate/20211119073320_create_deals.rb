@@ -8,6 +8,7 @@ class CreateDeals < ActiveRecord::Migration[6.1]
       t.integer :quantity
       t.date :publish_date
       t.string :image
+      t.integer :state, :default => 1
     end
   end
 end

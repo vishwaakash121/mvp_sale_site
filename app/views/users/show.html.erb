@@ -11,13 +11,4 @@
 <% end %>
 
 <h3 class="text-center mt-4">Deals</h3>
-
-<div class="flickr_pagination">
-    <%= will_paginate @deals, :container => false %>
-</div>
-
 <%= render 'deals/deal' %>
-
-<div class="flickr_pagination mb-4">
-    <%= will_paginate @deals, :container => false %>
-</div>
