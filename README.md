@@ -11,6 +11,7 @@ There are total 3 models created in project, each are associated with each other
 1. User
 2. Deal
 3. TransactionHistory
+Some of the basic assumption is taken such as deal title length, description and having some custom validation at model also, to avoid inconsistent data in database
 
 
-At Front End, HTML, CSS including bootstrap is used for having some interactive UI, you need to signup and login to go inside
+At Front End, HTML, CSS including bootstrap is used for having some interactive UI, given some of the basic front-end validation on deal form, you need to signup and login to go inside
